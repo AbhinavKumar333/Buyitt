@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<script src="static/js/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="static/css/materialize.css">
+  <script src="static/js/materialize.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="Language" content="en" />
+	<title>Buyitt</title>
+  <link rel="icon" href="https://cdn2.iconfinder.com/data/icons/shopping-glyphs-1/128/21-512.png">
+	<meta name="description" content="Online Shopping Portal"/>
+	<meta name="keywords" content="DBMS Project">
+	<meta name="author" content="Abhinav Kumar">
+</head>
+
+<body>
+{% include 'nav.html' %}
+{% macro getCollection(i,cnt) -%}
+<ul class="collection">
+		<li class="collection-item avatar">
+						<img src={{ i[5] }} alt="" class="circle">
+						<span class="title">{{ i[2] }}</span>
+						<p>Rs. {{ i[4] }} <br>
+							 {{ i[3] }}
+							 <span class="new badge" data-badge-caption="">{{ cnt }}</span>
+						</p>
+						<a href="/cart?action=deleteItem&pid={{ i[0] }}" class="secondary-content" id="delete"><i class="material-icons">close</i></a>
+		</li>
+</ul>
+{%- endmacro %}
+
+<div class="container" id="cartItems">
+	{% for d in data %}
+	<!-- {{ data[d][0][1] }} -->
+	{{ getCollection(data[d][0], c[d]) }}
+	{% endfor %}
+</div>
+</body>
+</html>
